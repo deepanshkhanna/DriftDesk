@@ -4,3 +4,15 @@ uvicorn[standard]>=0.29.0
 pydantic>=2.6.0
 websocket-client>=1.7.0
 requests>=2.31.0
+
+# ML stack — required by train.py
+torch>=2.3,<2.6
+transformers>=4.45,<4.50
+trl>=0.11,<0.14
+peft>=0.13,<0.16
+accelerate>=0.34,<1.5
+bitsandbytes>=0.43,<0.45
+datasets>=2.20,<3.5
+huggingface_hub>=0.25,<0.28
+safetensors>=0.4.3
+sentencepiece>=0.2.0

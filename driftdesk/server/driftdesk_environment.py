@@ -307,13 +307,15 @@ class DriftDeskEnvironment(Environment):
         done = all_done or timed_out
 
         episode_reward: Optional[float] = None
+        components: Optional[Dict[str, float]] = None
         if done:
             episode_reward, components = self._reward_engine.compute_episode_reward(
                 self._record, self._has_drift
             )
             self._state.reward_components = components
 
-        return self._build_obs(result, step, done=done, reward=episode_reward or step_reward)
+        return self._build_obs(result, step, done=done, reward=episode_reward or step_reward,
+                               reward_components=components)
 
     # ------------------------------------------------------------------
     # state property
@@ -333,6 +335,7 @@ class DriftDeskEnvironment(Environment):
         step: int,
         done: bool,
         reward: Optional[float],
+        reward_components: Optional[Dict[str, float]] = None,
     ) -> DriftDeskObservation:
         return DriftDeskObservation(
             policy_doc=self._policy_doc,
@@ -342,6 +345,7 @@ class DriftDeskEnvironment(Environment):
             episode_id=self._state.episode_id,
             done=done,
             reward=reward,
+            reward_components=reward_components or {},
         )
 
     @staticmethod

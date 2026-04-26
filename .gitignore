@@ -17,14 +17,18 @@ env/
 # Jupyter
 .ipynb_checkpoints/
 
-# Model checkpoints & large binaries (adapter safetensors can be very large)
-driftdesk/driftdesk_grpo_output/checkpoint-*/optimizer.pt
-driftdesk/driftdesk_grpo_output/checkpoint-*/rng_state.pth
-driftdesk/driftdesk_grpo_output/checkpoint-*/scheduler.pt
+# GRPO checkpoint output dirs (very large — ~7-12 GB each; artifacts are on HF Hub)
+driftdesk/driftdesk_grpo_output/
+driftdesk/driftdesk_grpo_output_archived_batch0/
 
-# Trained adapters (optional — comment out to include)
+# Trained adapters & SFT warmup (large safetensors — available on HF Hub)
 driftdesk_adapter/
 driftdesk_sft_warmup/
+driftdesk/driftdesk_adapter/
+driftdesk/driftdesk_sft_warmup/
+
+# Training logs (35k+ lines; raw artifact, not committed)
+driftdesk/local_training.log
 
 # Generated CSV outputs (keep baselines, ignore noisy intermediates)
 driftdesk/grpo_training_results.csv

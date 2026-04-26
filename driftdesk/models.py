@@ -84,6 +84,10 @@ class DriftDeskObservation(Observation):
     )
     step_count: int = Field(default=0, description="Steps taken so far in this episode.")
     episode_id: str = Field(default="", description="Unique episode identifier.")
+    reward_components: Dict[str, float] = Field(
+        default_factory=dict,
+        description="Per-component reward breakdown (populated on done=True).",
+    )
 
 
 # ---------------------------------------------------------------------------
